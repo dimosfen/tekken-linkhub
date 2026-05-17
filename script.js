@@ -46,3 +46,65 @@ function drawStars() {
 window.addEventListener("resize", resizeCanvas);
 resizeCanvas();
 drawStars();
+
+const serviceOrderButtons = Array.from(document.querySelectorAll(".service-order-btn"));
+const selectedAmountEl = document.getElementById("selectedAmount");
+const copyAmountBtn = document.getElementById("copyAmountBtn");
+const donateChoiceSection = document.getElementById("donate-choice");
+const donateRuBtn = document.getElementById("donateRuBtn");
+const donateWorldBtn = document.getElementById("donateWorldBtn");
+
+let selectedAmount = 500;
+let selectedService = "Разбор реплеев (3 шт)";
+
+function formatRub(amount) {
+  return `${amount.toLocaleString("ru-RU")} ₽`;
+}
+
+function updateDonateLinks(amount, serviceName) {
+  selectedAmount = amount;
+  selectedService = serviceName;
+  if (selectedAmountEl) {
+    selectedAmountEl.textContent = formatRub(amount);
+  }
+  if (donateRuBtn) {
+    const ruUrl = new URL("https://new.donatepay.ru/@1492824");
+    ruUrl.searchParams.set("amount", String(amount));
+    donateRuBtn.href = ruUrl.toString();
+  }
+  if (donateWorldBtn) {
+    const worldUrl = new URL("https://www.donationalerts.com/r/umoral88");
+    worldUrl.searchParams.set("amount", String(amount));
+    donateWorldBtn.href = worldUrl.toString();
+  }
+}
+
+serviceOrderButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const amount = Number.parseInt(btn.dataset.amount || "500", 10);
+    const serviceName = btn.dataset.service || selectedService;
+    updateDonateLinks(Number.isFinite(amount) ? amount : 500, serviceName);
+    if (donateChoiceSection) {
+      donateChoiceSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
+});
+
+if (copyAmountBtn) {
+  copyAmountBtn.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(String(selectedAmount));
+      copyAmountBtn.textContent = "Скопировано!";
+      setTimeout(() => {
+        copyAmountBtn.textContent = "Копировать сумму";
+      }, 900);
+    } catch (error) {
+      copyAmountBtn.textContent = "Ошибка";
+      setTimeout(() => {
+        copyAmountBtn.textContent = "Копировать сумму";
+      }, 900);
+    }
+  });
+}
+
+updateDonateLinks(selectedAmount, selectedService);

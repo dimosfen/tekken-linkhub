@@ -16,19 +16,36 @@
   <canvas id="starfield" aria-hidden="true"></canvas>
 
   <main class="page">
-    <section class="card" aria-label="Профиль Umoral">
-      <div class="avatar-wrap">
-        <img
-          class="avatar"
-          src="./avatar-circle.png"
-          alt="Аватар Umoral"
-          loading="lazy">
+    <section class="hero card" aria-label="Профиль Umoral">
+      <div class="hero-top">
+        <div class="avatar-wrap">
+          <img
+            class="avatar"
+            src="./avatar-circle.png"
+            alt="Аватар Umoral"
+            loading="lazy">
+        </div>
+        <div class="hero-info">
+          <h1 class="title">Umoral</h1>
+          <p class="subtitle">Тренер по Tekken 8: разборы, обучение и гайды под твой уровень.</p>
+          <div class="pill-row">
+            <span class="pill">Replay Review</span>
+            <span class="pill">FT3 + Разбор</span>
+            <span class="pill">Индивидуальное обучение</span>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <h1 class="title">Umoral</h1>
-  
-  
-      <nav class="links" aria-label="Основные ссылки">
+    <section class="card section-card" aria-label="Основные действия">
+      <h2>Здесь можно</h2>
+      <ul class="info-list">
+        <li>Уточнить информацию по услугам.</li>
+        <li>Забить место на обучение.</li>
+        <li>Обсудить заказы и все связанное с этим.</li>
+      </ul>
+      <p class="muted-note">Заказы делаются на стриме с помощью доната.</p>
+      <nav class="links top-links" aria-label="Основные ссылки">
         <a class="link-btn" href="https://new.donatepay.ru/@1492824" target="_blank" rel="noopener noreferrer">
           <span class="emoji" aria-hidden="true">💸</span>
           Донат (для России)
@@ -37,15 +54,66 @@
           <span class="emoji" aria-hidden="true">🌍</span>
           Донат (для других стран)
         </a>
-        <a class="link-btn" href="https://www.youtube.com/@Umoral88/videos" target="_blank" rel="noopener noreferrer">
-          <span class="emoji" aria-hidden="true">🎬</span>
-          YouTube
-        </a>
         <a class="link-btn" href="https://discord.com/invite/fvnt9zrCcb" target="_blank" rel="noopener noreferrer">
           <span class="emoji" aria-hidden="true">💬</span>
           Discord
         </a>
+        <a class="link-btn" href="https://www.youtube.com/@Umoral88/videos" target="_blank" rel="noopener noreferrer">
+          <span class="emoji" aria-hidden="true">🎬</span>
+          YouTube
+        </a>
       </nav>
+    </section>
+
+    <section class="card section-card" aria-label="Услуги и цены">
+      <h2>Услуги и цены</h2>
+      <div class="service-grid">
+        <article class="service-card">
+          <h3>Разбор реплеев (3 шт)</h3>
+          <p>Смотрю твои игры и даю конкретный список, что улучшить в приоритетном порядке.</p>
+          <div class="service-price">500 ₽</div>
+          <button class="service-order-btn" type="button" data-amount="500" data-service="Разбор реплеев (3 шт)">Заказать</button>
+        </article>
+        <article class="service-card">
+          <h3>Разбор 3 реплеев + FT3</h3>
+          <p>Разбор игр с ранкеда, FT3 со мной и отдельный фидбек по вашим матчам.</p>
+          <div class="service-price">800 ₽</div>
+          <button class="service-order-btn" type="button" data-amount="800" data-service="Разбор 3 реплеев + FT3">Заказать</button>
+        </article>
+        <article class="service-card">
+          <h3>Обучение на неделю</h3>
+          <p>Игры и разбор в Discord, важные приемы, матчи против зрителей, персональные советы и ответы всю неделю.</p>
+          <div class="service-price">2000 ₽</div>
+          <button class="service-order-btn" type="button" data-amount="2000" data-service="Обучение на неделю">Заказать</button>
+        </article>
+        <article class="service-card">
+          <h3>Видео на заказ</h3>
+          <p>Гайд на любую тему: механика, матчапы, как играть за/против персонажа. Длительность 10-60 минут.</p>
+          <div class="service-price">4000 ₽+</div>
+          <button class="service-order-btn" type="button" data-amount="4000" data-service="Видео на заказ">Заказать</button>
+        </article>
+      </div>
+      <p class="muted-note">Со всеми на связи даже после оказания услуг. В свободное время отвечаю.</p>
+    </section>
+
+    <section class="card section-card" id="donate-choice" aria-label="Выбор доната">
+      <h2>Оплатить заказ</h2>
+      <p class="muted-note">Выбери сервис доната. Сумма уже выставлена для выбранной услуги.</p>
+      <div class="selected-amount-wrap">
+        <span class="selected-amount-label">Сумма:</span>
+        <strong class="selected-amount" id="selectedAmount">500 ₽</strong>
+        <button class="copy-btn" id="copyAmountBtn" type="button">Копировать сумму</button>
+      </div>
+      <div class="links top-links" aria-label="Оплата донатом">
+        <a class="link-btn" id="donateRuBtn" href="https://new.donatepay.ru/@1492824" target="_blank" rel="noopener noreferrer">
+          <span class="emoji" aria-hidden="true">💸</span>
+          Оплатить (Россия)
+        </a>
+        <a class="link-btn" id="donateWorldBtn" href="https://www.donationalerts.com/r/umoral88" target="_blank" rel="noopener noreferrer">
+          <span class="emoji" aria-hidden="true">🌍</span>
+          Оплатить (другие страны)
+        </a>
+      </div>
     </section>
   </main>
 
